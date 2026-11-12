@@ -6,7 +6,8 @@
 
   const TRANSLATIONS = {
     en: {
-      pageTitle: "HEALTHACON 2026 — Community Medical Fund Survey",
+      pageTitle: "Community Medical Fund — Survey",
+      brandName: "Community Fund",
       skipLink: "Skip to survey",
       storyEyebrow: "The story",
       storyHeadline: "Amina is 8. <em>She needs an urgent ₹4 lakh operation.</em>",
@@ -40,10 +41,10 @@
       privacyTitle: "How answers are saved",
       privacyText: "Saved to a private Google Sheet only the owner can read. Your name is optional.",
       thankEyebrow: "Response recorded",
-      thankHeading: "Thank you. HEALTHACON 2026.",
+      thankHeading: "Thank you.",
       thankCopy: "Your answers have been saved to the private Google Sheet.",
       resetBtn: "Submit another response",
-      footerThanks: "Thank you. HEALTHACON 2026.",
+      footerThanks: "Thank you.",
       footerLink: "Google Form source ↗",
       errEmpty: "Please answer at least one question before sending.",
       errSetup: "Setup needed: paste your Apps Script Web App URL into app.js.",
@@ -55,7 +56,8 @@
       progressFinish: (n) => `${n} of 4 answered.`,
     },
     ml: {
-      pageTitle: "HEALTHACON 2026 — കമ്മ്യൂണിറ്റി മെഡിക്കൽ ഫണ്ട് സർവേ",
+      pageTitle: "കമ്മ്യൂണിറ്റി മെഡിക്കൽ ഫണ്ട് — സർവേ",
+      brandName: "കമ്മ്യൂണിറ്റി ഫണ്ട്",
       skipLink: "സർവേയിലേക്ക് കടക്കുക",
       storyEyebrow: "കഥ",
       storyHeadline: "അമിനയ്ക്ക് 8 വയസ്സാണ്. <em>അവൾക്ക് 4 ലക്ഷം രൂപയുടെ അടിയന്തര ശസ്ത്രക്രിയ ആവശ്യമാണ്.</em>",
@@ -89,10 +91,10 @@
       privacyTitle: "ഉത്തരങ്ങൾ സൂക്ഷിക്കുന്ന രീതി",
       privacyText: "സർവേ ഉടമയ്ക്ക് മാത്രം വായിക്കാൻ കഴിയുന്ന സ്വകാര്യ ഗൂഗിൾ ഷീറ്റിലേക്കാണ് ഉത്തരങ്ങൾ പോകുന്നത്. പേര് നിർബന്ധമില്ല.",
       thankEyebrow: "ഉത്തരം രേഖപ്പെടുത്തി",
-      thankHeading: "നന്ദി. HEALTHACON 2026.",
+      thankHeading: "നന്ദി.",
       thankCopy: "നിങ്ങളുടെ ഉത്തരങ്ങൾ സ്വകാര്യ ഗൂഗിൾ ഷീറ്റിൽ സേവ് ചെയ്തിട്ടുണ്ട്.",
       resetBtn: "മറ്റൊരു ഉത്തരം കൂടി നൽകുക",
-      footerThanks: "നന്ദി. HEALTHACON 2026.",
+      footerThanks: "നന്ദി.",
       footerLink: "ഗൂഗിൾ ഫോം ↗",
       errEmpty: "അയയ്ക്കുന്നതിന് മുമ്പ് കുറഞ്ഞത് ഒരു ചോദ്യത്തിനെങ്കിലും ഉത്തരം നൽകുക.",
       errSetup: "സജ്ജീകരണം ആവശ്യമാണ്: app.js-ൽ Apps Script URL നൽകുക.",
@@ -108,7 +110,7 @@
   let currentLang = "en";
   let lastErrorKey = "";
 
-  const form = document.getElementById("healthacon-form");
+  const form = document.getElementById("community-survey-form");
   const surveyContainer = document.getElementById("survey-container");
   const thankYouPanel = document.getElementById("thank-you-panel");
   const submitBtn = document.getElementById("submit-btn");
