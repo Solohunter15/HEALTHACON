@@ -25,7 +25,6 @@
   const finishProgressText = document.getElementById("finish-progress-text");
   const finishDots = document.querySelectorAll("#finish-dots .f-dot");
   const questionCards = document.querySelectorAll(".question-card");
-  const submittedSummary = document.getElementById("submitted-summary");
   const resetBtn = document.getElementById("reset-survey-btn");
 
   const ENTRY_KEYS = {
@@ -81,51 +80,7 @@
     }
   }
 
-  function buildSummary(data) {
-    const rows = [
-      {
-        q: "1. Would you join, giving ₹1 every week automatically?",
-        a: data.q1 || "Skipped",
-      },
-      {
-        q: "2. If it launched, would you start paying in the first month?",
-        a: data.q2 || "Skipped",
-      },
-      {
-        q: "3. Have you ever donated online for a medical cause?",
-        a: data.q3 || "Skipped",
-      },
-      {
-        q: "4. What would make you trust a case is real?",
-        a: data.q4.length ? data.q4.join(" · ") : "Skipped",
-      },
-      {
-        q: "Your name",
-        a: data.name || "Anonymous",
-      },
-    ];
-
-    submittedSummary.innerHTML = "";
-    rows.forEach((row) => {
-      const item = document.createElement("div");
-      item.className = "summary-item";
-
-      const qSpan = document.createElement("span");
-      qSpan.className = "summary-q";
-      qSpan.textContent = row.q;
-
-      const aSpan = document.createElement("span");
-      aSpan.className = "summary-a";
-      aSpan.textContent = row.a;
-
-      item.appendChild(qSpan);
-      item.appendChild(aSpan);
-      submittedSummary.appendChild(item);
-    });
-  }
-
-  function showConfirmation(data) {
-    buildSummary(data);
+  function showConfirmation() {
     thankYouEyebrow.textContent = "Response recorded";
     thankYouHeading.textContent = "Thank you. HEALTHACON 2026.";
     thankYouCopy.textContent =
@@ -186,7 +141,7 @@
 
     try {
       await submitViaAppsScript(endpoint, data);
-      showConfirmation(data);
+      showConfirmation();
     } catch (err) {
       feedbackEl.textContent =
         "Unable to save your response right now. Please check the Apps Script deployment URL and try again.";
