@@ -16,7 +16,7 @@
   --accent: #09090b;
   --accent-ink: #ffffff;
 
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Malayalam", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -139,11 +139,59 @@ body {
 }
 
 .header-inner {
-  padding-block: 14px;
+  padding-block: 12px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px 16px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.lang-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.lang-btn:hover:not(.is-active) {
+  color: var(--ink);
+}
+
+.lang-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.lang-btn.is-active {
+  background: var(--ink);
+  color: var(--accent-ink);
 }
 
 .brand {
@@ -339,6 +387,29 @@ body {
 .story-headline em {
   font-style: italic;
   color: var(--ink-secondary);
+}
+
+html[lang="ml"] body {
+  line-height: 1.72;
+}
+
+html[lang="ml"] .story-headline,
+html[lang="ml"] .thank-you-heading {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1.55rem, 2.5vw, 2.05rem);
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+}
+
+html[lang="ml"] .story-headline em {
+  font-style: normal;
+}
+
+html[lang="ml"] .svg-serif-lg {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 23px;
 }
 
 .story-lead {

@@ -11,13 +11,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Malayalam:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <a href="#answers-heading" class="skip-link">Skip to survey</a>
+  <a href="#answers-heading" class="skip-link" data-i18n="skipLink">Skip to survey</a>
   <div class="ambient-grid" aria-hidden="true"></div>
 
   <!-- Minimal Sticky Header -->
@@ -28,18 +28,39 @@
         <span class="brand-name">HEALTHACON 2026</span>
       </a>
 
-      <div class="header-status" aria-live="polite">
-        <span class="mono-label" id="header-progress-text">0 of 4 answered</span>
-        <div
-          class="progress-track"
-          role="progressbar"
-          aria-label="Survey completion"
-          aria-valuemin="0"
-          aria-valuemax="4"
-          aria-valuenow="0"
-          id="header-progress-bar"
-        >
-          <div class="progress-fill" id="header-progress-fill"></div>
+      <div class="header-controls">
+        <div class="lang-switch" role="group" aria-label="Language selection">
+          <button
+            type="button"
+            class="lang-btn is-active"
+            data-lang="en"
+            aria-pressed="true"
+          >
+            English
+          </button>
+          <button
+            type="button"
+            class="lang-btn"
+            data-lang="ml"
+            aria-pressed="false"
+          >
+            മലയാളം
+          </button>
+        </div>
+
+        <div class="header-status" aria-live="polite">
+          <span class="mono-label" id="header-progress-text">0 of 4 answered</span>
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Survey completion"
+            aria-valuemin="0"
+            aria-valuemax="4"
+            aria-valuenow="0"
+            id="header-progress-bar"
+          >
+            <div class="progress-fill" id="header-progress-fill"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -52,14 +73,13 @@
         <div class="story-sticky">
           <section class="story-section" aria-labelledby="story-heading">
             <div class="eyebrow-row">
-              <span class="eyebrow" id="story-heading">The story</span>
+              <span class="eyebrow" id="story-heading" data-i18n="storyEyebrow">The story</span>
               <span class="eyebrow-rule" aria-hidden="true"></span>
             </div>
 
             <!-- Custom Monochrome Editorial Illustration -->
             <figure class="story-illustration" aria-label="Illustration showing many ₹1 weekly coins pooling into a ₹4 lakh emergency medical fund">
               <svg viewBox="0 0 420 184" fill="none" xmlns="http://www.w3.org/2000/svg" class="illustration-svg">
-                <!-- Subtle architectural frame -->
                 <rect x="0.75" y="0.75" width="418.5" height="182.5" rx="13.25" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1.5" />
                 <path d="M24 148H396" stroke="#F4F4F5" stroke-width="1" />
 
@@ -85,32 +105,31 @@
                 <circle cx="164" cy="92" r="2.5" fill="#09090B" class="flow-pulse" />
 
                 <!-- Right: Pooled Shield + Medical Cross -->
-                <g transform="translate(208, 34)">
+                <g transform="translate(202, 34)">
                   <circle cx="56" cy="58" r="52" fill="#FAFAFA" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4" />
                   <path
                     d="M56 16L90 30V58C90 80.5 75.5 99.5 56 106C36.5 99.5 22 80.5 22 58V30L56 16Z"
                     fill="#09090B"
                   />
-                  <!-- Medical Cross -->
                   <path d="M56 44V74M41 59H71" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" />
                 </g>
 
                 <!-- Right-edge Metric Callout -->
-                <g transform="translate(328, 62)">
-                  <text x="0" y="18" class="svg-serif-lg">₹4L</text>
-                  <text x="0" y="36" class="svg-mono-xs">READY IN TIME</text>
-                  <line x1="0" y1="46" x2="62" y2="46" stroke="#E4E4E7" stroke-width="1.2" />
-                  <text x="0" y="62" class="svg-mono-xs-muted">₹1 / WEEK</text>
+                <g transform="translate(320, 62)">
+                  <text x="0" y="18" class="svg-serif-lg" id="svg-amount">₹4L</text>
+                  <text x="0" y="36" class="svg-mono-xs" id="svg-ready">READY IN TIME</text>
+                  <line x1="0" y1="46" x2="72" y2="46" stroke="#E4E4E7" stroke-width="1.2" />
+                  <text x="0" y="62" class="svg-mono-xs-muted" id="svg-rate">₹1 / WEEK</text>
                 </g>
               </svg>
             </figure>
 
-            <h1 class="story-headline">
+            <h1 class="story-headline" data-i18n-html="storyHeadline">
               Amina is 8. <em>She needs an urgent ₹4 lakh operation.</em>
             </h1>
 
-            <p class="story-lead">
-              Her daily-wage family can't raise it in time. Imagine thousands of people giving <strong>₹1 every week</strong> automatically — small coins become lakhs, ready when a family needs it.
+            <p class="story-lead" data-i18n-html="storyLead">
+              Her daily-wage family can't raise it in time. Imagine thousands giving <strong>₹1 every week</strong> automatically — small coins become lakhs when a family needs it.
             </p>
 
             <!-- Compact Imagined Example Note -->
@@ -123,8 +142,8 @@
                 </svg>
               </div>
               <div class="callout-body">
-                <span class="callout-title" id="imagined-heading">Imagined example</span>
-                <p class="callout-text">
+                <span class="callout-title" id="imagined-heading" data-i18n="imaginedTitle">Imagined example</span>
+                <p class="callout-text" data-i18n="imaginedText">
                   Amina is not a real patient. This story only explains the idea.
                 </p>
               </div>
@@ -135,16 +154,12 @@
 
       <!-- Right Column: Survey Interface -->
       <section class="survey-column" aria-labelledby="answers-heading">
-        <!-- Active Survey Form -->
         <div id="survey-container">
           <div class="section-header">
             <div class="eyebrow-row">
-              <span class="eyebrow" id="answers-heading">Your answers</span>
+              <span class="eyebrow" id="answers-heading" data-i18n="answersEyebrow">Your answers</span>
               <span class="eyebrow-rule" aria-hidden="true"></span>
             </div>
-            <p class="section-subtitle">
-              Four quick questions. Your feedback shapes how this community fund could work.
-            </p>
           </div>
 
           <form id="healthacon-form" novalidate>
@@ -154,24 +169,24 @@
                 <div class="question-header">
                   <span class="q-num" aria-hidden="true">1.</span>
                   <div class="q-title-wrap">
-                    <h2 class="q-text" id="q1-title">Would you join, giving ₹1 every week automatically?</h2>
+                    <h2 class="q-text" id="q1-title" data-i18n="q1Title">Would you join, giving ₹1 every week automatically?</h2>
                   </div>
                 </div>
                 <div class="options-grid options-grid--3">
                   <label class="option-tile">
                     <input type="radio" name="entry.1740767171" value="Yes" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Yes</span>
+                    <span class="option-label" data-i18n="optYes">Yes</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1740767171" value="Maybe" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Maybe</span>
+                    <span class="option-label" data-i18n="optMaybe">Maybe</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1740767171" value="No" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">No</span>
+                    <span class="option-label" data-i18n="optNo">No</span>
                   </label>
                 </div>
               </div>
@@ -181,24 +196,24 @@
                 <div class="question-header">
                   <span class="q-num" aria-hidden="true">2.</span>
                   <div class="q-title-wrap">
-                    <h2 class="q-text" id="q2-title">If it launched, would you start paying in the first month?</h2>
+                    <h2 class="q-text" id="q2-title" data-i18n="q2Title">If it launched, would you start paying in the first month?</h2>
                   </div>
                 </div>
                 <div class="options-grid options-grid--3">
                   <label class="option-tile">
                     <input type="radio" name="entry.1209894932" value="Yes" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Yes</span>
+                    <span class="option-label" data-i18n="optYes">Yes</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1209894932" value="Not sure yet" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Not sure yet</span>
+                    <span class="option-label" data-i18n="optNotSure">Not sure yet</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1209894932" value="No" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">No</span>
+                    <span class="option-label" data-i18n="optNo">No</span>
                   </label>
                 </div>
               </div>
@@ -208,24 +223,24 @@
                 <div class="question-header">
                   <span class="q-num" aria-hidden="true">3.</span>
                   <div class="q-title-wrap">
-                    <h2 class="q-text" id="q3-title">Have you ever donated online for a medical cause?</h2>
+                    <h2 class="q-text" id="q3-title" data-i18n="q3Title">Have you ever donated online for a medical cause?</h2>
                   </div>
                 </div>
                 <div class="options-grid options-grid--3">
                   <label class="option-tile">
                     <input type="radio" name="entry.1705522595" value="No, never" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">No, never</span>
+                    <span class="option-label" data-i18n="optNever">No, never</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1705522595" value="Yes, once" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Yes, once</span>
+                    <span class="option-label" data-i18n="optOnce">Yes, once</span>
                   </label>
                   <label class="option-tile">
                     <input type="radio" name="entry.1705522595" value="Yes, more than once" class="sr-only" />
                     <span class="option-indicator option-indicator--radio" aria-hidden="true"></span>
-                    <span class="option-label">Yes, more than once</span>
+                    <span class="option-label" data-i18n="optMoreThanOnce">Yes, more than once</span>
                   </label>
                 </div>
               </div>
@@ -235,8 +250,8 @@
                 <div class="question-header">
                   <span class="q-num" aria-hidden="true">4.</span>
                   <div class="q-title-wrap">
-                    <h2 class="q-text" id="q4-title">What would make you trust a case is real?</h2>
-                    <p class="question-hint" id="q4-hint">Choose all that apply.</p>
+                    <h2 class="q-text" id="q4-title" data-i18n="q4Title">What would make you trust a case is real?</h2>
+                    <p class="question-hint" id="q4-hint" data-i18n="q4Hint">Choose all that apply.</p>
                   </div>
                 </div>
                 <div class="options-grid options-grid--2">
@@ -252,7 +267,7 @@
                         <path d="M2.5 13.5H13.5M4 13.5V4.5C4 3.67 4.67 3 5.5 3H10.5C11.33 3 12 3.67 12 4.5V13.5M8 5.75V9.25M6.25 7.5H9.75" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </span>
-                    <span class="option-label">Hospital confirms it</span>
+                    <span class="option-label" data-i18n="optHospital">Hospital confirms it</span>
                   </label>
 
                   <label class="option-tile">
@@ -268,7 +283,7 @@
                         <path d="M6 9.25L7.35 10.6L10.25 7.6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </span>
-                    <span class="option-label">Verified documents</span>
+                    <span class="option-label" data-i18n="optDocs">Verified documents</span>
                   </label>
 
                   <label class="option-tile">
@@ -286,7 +301,7 @@
                         <path d="M11.5 9.75C12.95 10 14 11.15 14 12.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                       </svg>
                     </span>
-                    <span class="option-label">Someone I know refers it</span>
+                    <span class="option-label" data-i18n="optRefer">Someone I know refers it</span>
                   </label>
 
                   <label class="option-tile">
@@ -302,7 +317,7 @@
                         <circle cx="8" cy="8.25" r="2" stroke="currentColor" stroke-width="1.25" />
                       </svg>
                     </span>
-                    <span class="option-label">Photo and video updates</span>
+                    <span class="option-label" data-i18n="optMedia">Photo and video updates</span>
                   </label>
                 </div>
               </div>
@@ -312,7 +327,7 @@
             <div class="finish-card" aria-labelledby="finish-heading">
               <div class="finish-top">
                 <div>
-                  <h2 class="finish-title" id="finish-heading">Finish</h2>
+                  <h2 class="finish-title" id="finish-heading" data-i18n="finishTitle">Finish</h2>
                   <p class="finish-counter" id="finish-progress-text">0 of 4 answered.</p>
                 </div>
                 <div class="finish-dots" aria-hidden="true" id="finish-dots">
@@ -324,7 +339,7 @@
               </div>
 
               <div class="field-group">
-                <label for="respondent-name" class="field-label">Your name (optional)</label>
+                <label for="respondent-name" class="field-label" data-i18n="nameLabel">Your name (optional)</label>
                 <input
                   type="text"
                   id="respondent-name"
@@ -333,14 +348,14 @@
                   placeholder="Anonymous"
                   autocomplete="name"
                 />
-                <p class="field-helper">Leave the name empty to stay anonymous.</p>
+                <p class="field-helper" data-i18n="nameHelper">Leave empty to stay anonymous.</p>
               </div>
 
               <p class="form-feedback" id="form-feedback" role="alert" aria-live="polite" hidden></p>
 
               <div class="submit-row">
                 <button type="submit" class="submit-btn" id="submit-btn">
-                  <span class="btn-label">Send answers</span>
+                  <span class="btn-label" data-i18n="sendBtn">Send answers</span>
                   <span class="btn-spinner" aria-hidden="true"></span>
                   <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -354,10 +369,10 @@
                     <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.25" />
                     <path d="M5.25 7V5C5.25 3.48122 6.48122 2.25 8 2.25C9.51878 2.25 10.75 3.48122 10.75 5V7" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
                   </svg>
-                  <span>How answers are saved</span>
+                  <span data-i18n="privacyTitle">How answers are saved</span>
                 </div>
-                <p>
-                  Answers go to a private Google Sheet only the survey owner can read. Your name is optional.
+                <p data-i18n="privacyText">
+                  Saved to a private Google Sheet only the owner can read. Your name is optional.
                 </p>
               </div>
             </div>
@@ -373,14 +388,14 @@
               <path d="M18.5 26.5L23.5 31.5L34 21" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <span class="eyebrow" id="thank-you-eyebrow">Response recorded</span>
-          <h2 class="thank-you-heading" id="thank-you-heading">Thank you. HEALTHACON 2026.</h2>
-          <p class="thank-you-copy" id="thank-you-copy">
-            Your answers have been saved directly to the Google Form and private Google Sheet.
+          <span class="eyebrow" id="thank-you-eyebrow" data-i18n="thankEyebrow">Response recorded</span>
+          <h2 class="thank-you-heading" id="thank-you-heading" data-i18n="thankHeading">Thank you. HEALTHACON 2026.</h2>
+          <p class="thank-you-copy" id="thank-you-copy" data-i18n="thankCopy">
+            Your answers have been saved to the private Google Sheet.
           </p>
 
           <div class="thank-you-actions">
-            <button type="button" class="secondary-btn" id="reset-survey-btn">
+            <button type="button" class="secondary-btn" id="reset-survey-btn" data-i18n="resetBtn">
               Submit another response
             </button>
           </div>
@@ -391,13 +406,14 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-thanks">Thank you. HEALTHACON 2026.</p>
+      <p class="footer-thanks" data-i18n="footerThanks">Thank you. HEALTHACON 2026.</p>
       <div class="footer-links">
         <a
           href="https://forms.gle/34jbZie3fbJ3wKxk6"
           target="_blank"
           rel="noopener noreferrer"
           class="footer-link"
+          data-i18n="footerLink"
         >
           Google Form source ↗
         </a>
