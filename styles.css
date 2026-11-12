@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Community Medical Fund — Monochrome Editorial Survey Interface
+   Community Survey — Monochrome Editorial Survey Interface
    ========================================================================== */
 
 :root {
@@ -26,8 +26,7 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.03), 0 10px 28px -14px rgba(9, 9, 11, 0.08);
-  --shadow-card-hover: 0 2px 6px rgba(9, 9, 11, 0.04), 0 16px 36px -16px rgba(9, 9, 11, 0.11);
+  --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.03), 0 8px 24px -12px rgba(9, 9, 11, 0.06);
   --transition: 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -134,9 +133,15 @@ body {
   top: 0;
   z-index: 40;
   background: rgba(250, 250, 250, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
+  transition: box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(250, 250, 250, 0.94);
+  box-shadow: 0 6px 24px -16px rgba(9, 9, 11, 0.14);
 }
 
 .header-inner {
@@ -204,17 +209,18 @@ body {
   min-height: 28px;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink);
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--ink);
+  display: inline-block;
   flex-shrink: 0;
 }
 
 .brand-name {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -223,11 +229,7 @@ body {
 .header-status {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  gap: 12px;
 }
 
 .mono-label {
@@ -364,7 +366,76 @@ body {
 }
 
 .flow-pulse {
-  animation: pulseSlide 2.6s ease-in-out infinite;
+  animation: pulseSlide 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.coin-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: coinFloat 4.2s ease-in-out infinite;
+}
+
+.coin-float--1 {
+  animation-delay: 0s;
+}
+
+.coin-float--2 {
+  animation-delay: 0.9s;
+}
+
+.coin-float--3 {
+  animation-delay: 1.8s;
+}
+
+.flow-dash {
+  animation: dashFlow 2.4s linear infinite;
+}
+
+.shield-aura {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: auraBreath 4s ease-in-out infinite;
+}
+
+@keyframes coinFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@keyframes auraBreath {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+}
+
+/* Staggered page-load entrance */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: riseIn 560ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulseSlide {
@@ -496,30 +567,23 @@ html[lang="ml"] .svg-serif-lg {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
-  animation: fadeUp 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.question-card:nth-child(1) { animation-delay: 40ms; }
-.question-card:nth-child(2) { animation-delay: 80ms; }
-.question-card:nth-child(3) { animation-delay: 120ms; }
-.question-card:nth-child(4) { animation-delay: 160ms; }
-
-@media (min-width: 640px) {
-  .question-card {
-    padding: 26px;
-  }
 }
 
 .question-card:hover {
   border-color: var(--border-strong);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: 0 2px 6px rgba(9, 9, 11, 0.04), 0 14px 30px -14px rgba(9, 9, 11, 0.09);
+}
+
+@media (min-width: 640px) {
+  .question-card {
+    padding: 24px;
+  }
 }
 
 .question-card.is-answered {
-  border-color: var(--ink);
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-strong);
 }
 
 /* Exact vertical axis alignment for number, question title, and hint */
@@ -609,10 +673,12 @@ html[lang="ml"] .svg-serif-lg {
 .option-tile:hover {
   background: var(--surface-hover);
   border-color: var(--border-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -6px rgba(9, 9, 11, 0.08);
 }
 
 .option-tile:active {
-  transform: scale(0.99);
+  transform: scale(0.985);
 }
 
 .option-tile:has(input:focus-visible) {
@@ -624,6 +690,7 @@ html[lang="ml"] .svg-serif-lg {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-ink);
+  box-shadow: 0 6px 16px -6px rgba(9, 9, 11, 0.25);
 }
 
 .option-indicator {
@@ -747,6 +814,19 @@ html[lang="ml"] .svg-serif-lg {
 .f-dot.is-active {
   background: var(--ink);
   border-color: var(--ink);
+  animation: dotPop 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dotPop {
+  0% {
+    transform: scale(0.7);
+  }
+  60% {
+    transform: scale(1.28);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Name Input */
@@ -927,6 +1007,30 @@ html[lang="ml"] .svg-serif-lg {
 
 .thank-you-visual {
   margin-bottom: 18px;
+}
+
+.thank-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spinSlow 24s linear infinite;
+}
+
+.thank-check {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: drawCheck 420ms cubic-bezier(0.22, 1, 0.36, 1) 140ms forwards;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .thank-you-heading {
